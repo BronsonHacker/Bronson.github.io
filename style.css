@@ -1,171 +1,185 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Fonte principal */
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    background: linear-gradient(to right, #FFC0CB, #ADD8E6); /* Gradiente suave */
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o rodapé fique no final da página */
 }
 
 header {
-    background: #e91e63; /* Rosa do amor */
+    background: rgba(255, 105, 180, 0.9); /* Rosa mais suave, com transparência */
     color: #fff;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10; /* Garante que o cabeçalho fique por cima */
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-family: 'Dancing Script', cursive; /* Fonte mais romântica para o título */
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
 header p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
 }
 
 main {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.timeline {
+    flex-grow: 1; /* Faz o conteúdo principal preencher o espaço restante */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
     position: relative;
-    padding: 20px 0;
-    list-style: none;
 }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 4px;
-    background: #ddd;
-    transform: translateX(-50%);
+.intro-text {
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.85); /* Fundo branco com transparência */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px); /* Efeito de blur no fundo do texto */
 }
 
-.timeline-item {
+.intro-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+/* Estilos do Swiper (Carrossel) */
+.swiper {
+    width: 100%;
+    max-width: 800px; /* Largura máxima para o carrossel */
+    height: 400px; /* Altura do carrossel */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
     position: relative;
-    margin-bottom: 40px;
 }
 
-.timeline-item:nth-child(odd) {
-    text-align: right;
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o slide sem distorcer */
+    filter: brightness(0.8); /* Escurece um pouco a imagem para o texto se destacar */
 }
 
-.timeline-item:nth-child(even) {
-    text-align: left;
-}
-
-.timeline-date {
+.swiper-slide .caption {
     position: absolute;
-    top: 0;
-    width: 120px;
-    font-weight: bold;
-    color: #e91e63;
-    font-size: 0.9rem;
-}
-
-.timeline-item:nth-child(odd) .timeline-date {
-    left: calc(50% - 140px); /* Ajuste para mover a data para a esquerda */
-}
-
-.timeline-item:nth-child(even) .timeline-date {
-    right: calc(50% - 140px); /* Ajuste para mover a data para a direita */
-}
-
-.timeline-content {
-    background: #fff;
-    padding: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+    padding: 10px 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 45%;
-    position: relative;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
-.timeline-item:nth-child(odd) .timeline-content {
-    margin-left: 55%;
+/* Navegação do Swiper (setas) */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #FF1493 !important; /* Cor das setas */
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease;
 }
 
-.timeline-item:nth-child(even) .timeline-content {
-    margin-right: 55%;
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 1.5rem !important; /* Tamanho do ícone da seta */
 }
 
-.timeline-content h2 {
-    color: #e91e63;
-    margin-top: 0;
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
-.timeline-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 15px;
+/* Paginação do Swiper (pontos) */
+.swiper-pagination-bullet {
+    background: #FF1493 !important; /* Cor dos pontos da paginação */
+    opacity: 0.7 !important;
 }
 
-/* Setas para o conteúdo da timeline */
-.timeline-content::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    border: solid transparent;
-    height: 0;
-    width: 0;
-    pointer-events: none;
-}
-
-.timeline-item:nth-child(odd) .timeline-content::before {
-    right: 100%;
-    border-right-color: #fff;
-    border-width: 10px;
-}
-
-.timeline-item:nth-child(even) .timeline-content::before {
-    left: 100%;
-    border-left-color: #fff;
-    border-width: 10px;
+.swiper-pagination-bullet-active {
+    background: #e91e63 !important; /* Cor do ponto ativo */
+    opacity: 1 !important;
 }
 
 footer {
     text-align: center;
     padding: 1rem 0;
-    background: #e91e63;
+    background: rgba(255, 105, 180, 0.9);
     color: #fff;
-    margin-top: 2rem;
+    margin-top: auto; /* Empurra o rodapé para o final */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .timeline::before {
-        left: 20px; /* Alinha a linha central mais para a esquerda */
-        transform: translateX(0);
+    header h1 {
+        font-size: 2.5rem;
     }
 
-    .timeline-item {
-        text-align: left !important; /* Força tudo para a esquerda */
+    header p {
+        font-size: 1rem;
     }
 
-    .timeline-date {
-        position: relative; /* Ajusta a data para ficar acima do conteúdo */
-        width: auto;
-        margin-bottom: 10px;
-        left: 0 !important;
-        right: auto !important;
+    .intro-text {
+        margin-bottom: 2rem;
+        padding: 1rem;
     }
 
-    .timeline-content {
-        width: calc(100% - 40px); /* Ocupa mais largura */
-        margin-left: 40px !important; /* Empurra o conteúdo para a direita da linha */
-        margin-right: 0 !important;
+    .intro-text p {
+        font-size: 0.95rem;
     }
 
-    .timeline-content::before {
-        left: -10px !important; /* Seta para a esquerda */
-        right: auto !important;
-        border-right-color: #fff !important;
-        border-left-color: transparent !important;
+    .swiper {
+        height: 300px; /* Ajusta a altura do carrossel para telas menores */
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 1rem !important;
+    }
+
+    .swiper-slide .caption {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
     }
 }
